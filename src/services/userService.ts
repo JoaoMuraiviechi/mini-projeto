@@ -34,6 +34,10 @@ export const loginUser = async (email: string, password: string) => {
     err.status = 401;
     throw err;
   }
-  const token = jwt.sign({ id: user._id, email: user.email }, jwtSecret, { expiresIn: jwtExpires });
+  const token = jwt.sign(
+    { id: user._id, email: user.email },
+    process.env.JWT_SECRET as string, 
+    { expiresIn: jwtExpires }
+  );
   return token;
 };
