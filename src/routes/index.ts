@@ -5,7 +5,7 @@ import { health } from "../controllers/healthController";
 
 const router = Router();
 
-router.get("/", health); // rota raiz
+router.get("/", health);
 router.post("/register", register);
 router.post("/login", login);
 router.get("/protected", authMiddleware, protectedRoute);
