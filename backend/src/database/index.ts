@@ -6,7 +6,7 @@ export const connectDB = async () => {
     if (!uri) throw new Error("MONGO_URI não definido");
 
     await mongoose.connect(uri, {
-      dbName: "mini-projeto", // nome do banco
+      dbName: "mini-projeto",
     });
 
     console.log("✅ MongoDB conectado com sucesso!");
