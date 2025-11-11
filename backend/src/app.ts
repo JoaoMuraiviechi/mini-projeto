@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import cors from "cors"; // ✅ importa o CORS
+import cors from "cors";
 import router from "./routes";
 import { connectDB } from "./database";
 
@@ -18,15 +18,17 @@ app.use(
   })
 );
 
+
+app.options("*", cors());
+
 app.use(express.json());
 
-// log básico das requisições
+
 app.use((req, res, next) => {
   console.log(`${new Date().toISOString()} ${req.method} ${req.url}`);
   next();
 });
 
-// suas rotas
 app.use("/", router);
 
 connectDB();
