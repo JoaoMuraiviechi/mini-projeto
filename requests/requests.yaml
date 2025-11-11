@@ -1,0 +1,89 @@
+# Insomnia export
+requests:
+  - name: Register - Success
+    method: POST
+    url: http://localhost:3000/register
+    body:
+      type: json
+      json:
+        name: "João"
+        email: "joao@example.com"
+        password: "senha123"
+  - name: Register - Email Repeated
+    method: POST
+    url: http://localhost:3000/register
+    body:
+      type: json
+      json:
+        name: "João"
+        email: "joao@example.com"
+        password: "senha123"
+  - name: Register - Invalid Password (too short)
+    method: POST
+    url: http://localhost:3000/register
+    body:
+      type: json
+      json:
+        name: "Maria"
+        email: "maria@example.com"
+        password: "123"
+  - name: Register - Invalid Email
+    method: POST
+    url: http://localhost:3000/register
+    body:
+      type: json
+      json:
+        name: "Carlos"
+        email: "carlos-at-example"
+        password: "senha123"
+  - name: Register - Bad Request (missing fields)
+    method: POST
+    url: http://localhost:3000/register
+    body:
+      type: json
+      json:
+        email: "semname@example.com"
+  - name: Login - Success
+    method: POST
+    url: http://localhost:3000/login
+    body:
+      type: json
+      json:
+        email: "joao@example.com"
+        password: "senha123"
+  - name: Login - Wrong Password
+    method: POST
+    url: http://localhost:3000/login
+    body:
+      type: json
+      json:
+        email: "joao@example.com"
+        password: "errada"
+  - name: Login - Invalid Email
+    method: POST
+    url: http://localhost:3000/login
+    body:
+      type: json
+      json:
+        email: "naoexistente-at-example"
+        password: "senha123"
+  - name: Login - Bad Request (missing fields)
+    method: POST
+    url: http://localhost:3000/login
+    body:
+      type: json
+      json:
+        email: "joao@example.com"
+  - name: Protected - With Valid Token
+    method: GET
+    url: http://localhost:3000/protected
+    headers:
+      Authorization: "Bearer <COLE_AQUI_O_TOKEN>"
+  - name: Protected - No Token
+    method: GET
+    url: http://localhost:3000/protected
+  - name: Protected - Invalid Token
+    method: GET
+    url: http://localhost:3000/protected
+    headers:
+      Authorization: "Bearer invalid.token.here"
